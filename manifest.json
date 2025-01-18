@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Copy Button Extension",
+    "version": "1.0",
+    "description": "Adds a copy button to specific objects on a webpage.",
+    "permissions": ["clipboardWrite"],
+    "host_permissions": ["<all_urls>"],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "css": ["styles.css"]
+      }
+    ]
+  }
+  
