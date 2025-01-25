@@ -101,6 +101,11 @@ function processRows() {
         // Format socket string
         const socketString = numSockets > 0 ? "S ".repeat(numSockets).trim() : ""; // Repeat "S" for each socket and trim trailing space
 
+        // Extract socked mods
+        const socketModsRaw = row.querySelectorAll('.runeMod');
+        const socketMods = [];
+        socketModsRaw.forEach((mod) => socketMods.push(mod.innerText.trim() + " (rune)"));
+        
         // Build the formatted string
         let textToCopy = `
 Item Class: ${itemClass}
@@ -113,10 +118,11 @@ ${requirementsString ? `--------\n${requirementsString}` : ""}
 ${socketString ? `--------\nSockets: ${socketString}` : ""}
 --------
 ${itemLevel}
+${socketMods ? `--------\n${socketMods.join("\n")}` : ""}
 --------
 ${modifiers.join("\n")}
 ${isCorrupted}
-        `.trim(); // Remove unnecessary whitespace at the start and end
+`.trim(); // Remove unnecessary whitespace at the start and end
 
         // Copy the formatted string to the clipboard
         navigator.clipboard.writeText(textToCopy)
